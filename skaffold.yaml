@@ -4,10 +4,12 @@ manifests:
   rawYaml:
     - ./infra/k8s/*
 build:
-  local:
-    push: false
+  #  local:
+  #    push: false
+  googleCloudBuild:
+    projectId: gifted-proxy-435123-u1
   artifacts:
-    - image: mathdenizi/auth
+    - image: us.gcr.io/gifted-proxy-435123-u1/auth
       context: auth
       docker:
         dockerfile: Dockerfile
