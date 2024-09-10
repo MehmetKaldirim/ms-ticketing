@@ -1,14 +1,15 @@
-apiVersion: skaffold/v2alpha3
+apiVersion: skaffold/v4beta3
 kind: Config
-deploy:
-  kubectl:
-    manifests:
-      - ./infra/k8s/*
+manifests:
+  rawYaml:
+    - ./infra/k8s/*
 build:
-  local:
-    push: false
+  #  local:
+  #    push: false
+  googleCloudBuild:
+    projectId: gifted-proxy-435123-u1
   artifacts:
-    - image: rallycoding/auth
+    - image: us.gcr.io/gifted-proxy-435123-u1/auth
       context: auth
       docker:
         dockerfile: Dockerfile
