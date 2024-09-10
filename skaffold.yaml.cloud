@@ -1,0 +1,19 @@
+apiVersion: skaffold/v4beta3
+kind: Config
+manifests:
+  rawYaml:
+    - ./infra/k8s/*
+build:
+  #  local:
+  #    push: false
+  googleCloudBuild:
+    projectId: gifted-proxy-435123-u1
+  artifacts:
+    - image: us.gcr.io/gifted-proxy-435123-u1/auth
+      context: auth
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "src/**/*.ts"
+            dest: .
