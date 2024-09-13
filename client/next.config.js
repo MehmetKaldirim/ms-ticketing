@@ -1,9 +1,8 @@
 module.exports = {
   webpack: (config) => {
     config.watchOptions = {
-      poll: 50000, // Check for changes every second
-      aggregateTimeout: 30000, // Delay before rebuilding
-      ignored: /node_modules/, // Ignore node_modules to prevent unnecessary reloads
+      poll: 1000, // Increase poll interval or disable polling
+      aggregateTimeout: 300,
     };
     return config;
   },
