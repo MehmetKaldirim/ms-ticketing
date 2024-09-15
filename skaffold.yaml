@@ -23,5 +23,13 @@ build:
         dockerfile: Dockerfile
       sync:
         manual:
-          - src: "**/*.ts"
+          - src: "**/*.js"
+            dest: .
+    - image: us.gcr.io/gifted-proxy-435123-u1/tickets
+      context: tickets
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "src/**/*.ts"
             dest: .
