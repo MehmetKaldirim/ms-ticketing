@@ -8,7 +8,8 @@ declare global {
   // Update the return type to handle the undefined case
   var signin: () => string[];
 }
-
+//we are doing to simulate NAT client
+jest.mock("../nats-wrapper.ts");
 let mongo: MongoMemoryServer;
 
 beforeAll(async () => {
@@ -21,6 +22,7 @@ beforeAll(async () => {
 });
 
 beforeEach(async () => {
+  jest.clearAllMocks();
   const collections = await mongoose.connection.db!.collections();
 
   for (let collection of collections) {
