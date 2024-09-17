@@ -1,16 +1,16 @@
 import mongoose from "mongoose";
-//import { OrderStatus } from "@math-web-5180/common";
+import { OrderStatus } from "@math-web-5180/common";
 
 interface OrderAttrs {
   userId: string;
-  //  status: OrderStatus;
+  status: OrderStatus;
   expiresAt: Date;
   ticket: TicketDoc;
 }
 
 interface OrderDoc extends mongoose.Document {
   userId: string;
-  //  status: OrderStatus;
+  status: OrderStatus;
   expiresAt: Date;
   ticket: TicketDoc;
 }
