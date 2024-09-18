@@ -1,5 +1,8 @@
 import mongoose from "mongoose";
 import { OrderStatus } from "@math-web-5180/common";
+import { TicketDoc } from "./ticket";
+
+export { OrderStatus };
 
 interface OrderAttrs {
   userId: string;
