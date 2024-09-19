@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import { updateIfCurrentPlugin } from "mongoose-update-if-current";
 import { Order, OrderStatus } from "./order";
+import { version } from "node-nats-streaming";
 
 interface TicketAttrs {
   id: string;
@@ -46,8 +47,18 @@ const ticketSchema = new mongoose.Schema(
 );
 
 ticketSchema.set("versionKey", "version");
-ticketSchema.plugin(updateIfCurrentPlugin);
 
+//update version with plugin
+//ticketSchema.plugin(updateIfCurrentPlugin);
+
+//update version manually
+ticketSchema.pre("save", function (done) {
+  //@ts-ignore
+  this.$where = {
+    version: this.get("version") - 1,
+  };
+  done();
+});
 ticketSchema.statics.findByEvent = (event: { id: string; version: number }) => {
   return Ticket.findOne({
     _id: event.id,
