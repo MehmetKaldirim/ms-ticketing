@@ -7,7 +7,7 @@ import {
   NotAuthorizedError,
 } from "@math-web-5180/common";
 import { Ticket } from "../models/ticket";
-import { TicketUpdatedPublisher } from "../events/publisher/ticket-updated-publisher";
+import { TicketUpdatedPublisher } from "../events/publishers/ticket-updated-publisher";
 import { natsWrapper } from "../nats-wrapper";
 
 const router = express.Router();
