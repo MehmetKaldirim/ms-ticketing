@@ -14,8 +14,9 @@ export class TicketUpdatedListener extends Listener<TicketUpdatedEvent> {
       throw new Error("Ticket not found");
     }
 
-    const { title, price, version } = data;
-    ticket.set({ title, price, version });
+    // add version, if you wanna not use mongoose plugin to update the version
+    const { title, price } = data;
+    ticket.set({ title, price });
     await ticket.save();
 
     msg.ack();
