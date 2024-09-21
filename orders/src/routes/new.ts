@@ -12,9 +12,10 @@ import { Ticket } from "../models/ticket";
 import { Order } from "../models/order";
 import { OrderCreatedPublisher } from "../events/publishers/order-created-publisher";
 import { natsWrapper } from "../nats-wrapper";
+
 const router = express.Router();
 
-const EXPIRATION_WINDOW_SECONDS = 1 * 60;
+const EXPIRATION_WINDOW_SECONDS = 1;
 
 router.post(
   "/api/orders",
@@ -55,7 +56,7 @@ router.post(
     });
     await order.save();
 
-    // TODO: Publish an event saying that an order was created
+    // Publish an event saying that an order was created
     new OrderCreatedPublisher(natsWrapper.client).publish({
       id: order.id,
       version: order.version,
