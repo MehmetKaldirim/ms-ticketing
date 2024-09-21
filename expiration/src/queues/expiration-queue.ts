@@ -13,7 +13,6 @@ const expirationQueue = new Queue<Payload>("order:expiration", {
 });
 
 expirationQueue.process(async (job) => {
-  console.log("aha buda complete event" + job.data.orderId);
   new ExpirationCompletePublisher(natsWrapper.client).publish({
     orderId: job.data.orderId,
   });
