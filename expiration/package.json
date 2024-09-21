@@ -18,7 +18,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "@math-web-5180/common": "^1.0.10",
+    "@math-web-5180/common": "^1.0.12",
     "@types/bull": "^4.10.0",
     "bull": "^4.16.3",
     "node-nats-streaming": "^0.3.2",
