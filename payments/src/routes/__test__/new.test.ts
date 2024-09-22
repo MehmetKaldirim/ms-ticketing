@@ -4,6 +4,7 @@ import { OrderStatus } from "@math-web-5180/common";
 import { app } from "../../app";
 import { Order } from "../../models/order";
 import { stripe } from "../../stripe";
+import { Payment } from "../../models/payment";
 
 //jest.mock("../../stripe.ts");
 
@@ -67,7 +68,7 @@ it("returns a 201 with valid inputs", async () => {
     userId,
     version: 0,
     price,
-    //price: 20,
+    //mock test price: 20,
     status: OrderStatus.Created,
   });
   await order.save();
@@ -94,9 +95,9 @@ it("returns a 201 with valid inputs", async () => {
   expect(stripeCharge).toBeDefined();
   expect(stripeCharge!.currency).toEqual("usd");
 
-  // const payment = await Payment.findOne({
-  //   orderId: order.id,
-  //   stripeId: stripeCharge!.id,
-  // });
-  // expect(payment).not.toBeNull();
+  const payment = await Payment.findOne({
+    orderId: order.id,
+    stripeId: stripeCharge!.id,
+  });
+  expect(payment).not.toBeNull();
 });

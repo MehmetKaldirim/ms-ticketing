@@ -10,6 +10,7 @@ import {
 } from "@math-web-5180/common";
 import { stripe } from "../stripe";
 import { Order } from "../models/order";
+import { Payment } from "../models/payment";
 
 const router = express.Router();
 
@@ -38,8 +39,18 @@ router.post(
       amount: order.price * 100,
       source: token,
     });
+    const payment = Payment.build({
+      orderId,
+      stripeId: charge.id,
+    });
+    await payment.save();
+    // new PaymentCreatedPublisher(natsWrapper.client).publish({
+    //   id: payment.id,
+    //   orderId: payment.orderId,
+    //   stripeId: payment.stripeId,
+    // });
 
-    res.status(201).send({ success: true });
+    res.status(201).send({ id: payment.id });
   }
 );
 

@@ -13,7 +13,7 @@ jest.mock("../nats-wrapper.ts");
 let mongo: MongoMemoryServer;
 
 process.env.STRIPE_KEY = "we should put originally key iot test it";
-
+//"we should put originally key iot test it"
 beforeAll(async () => {
   process.env.JWT_KEY = "somekey";
 
