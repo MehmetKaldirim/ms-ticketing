@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: auth
-          image: mathdenizi/ticketing-auth
+          image: us.gcr.io/gifted-proxy-435123-u1/auth
           env:
             - name: MONGO_URI
               value: "mongodb://auth-mongo-srv:27017/auth"

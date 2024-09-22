@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: payments
-          image: mathdenizi/ticketing-payments
+          image: us.gcr.io/gifted-proxy-435123-u1/payments
           env:
             - name: NATS_CLIENT_ID
               valueFrom:

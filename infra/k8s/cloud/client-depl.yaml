@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: client
-          image: mathdenizi/ticketing-client
+          image: us.gcr.io/gifted-proxy-435123-u1/client
 ---
 apiVersion: v1
 kind: Service

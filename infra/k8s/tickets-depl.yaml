@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: tickets
-          image: us.gcr.io/gifted-proxy-435123-u1/tickets
+          image: mathdenizi/ticketing-tickets
           env:
             - name: NATS_CLIENT_ID
               valueFrom:

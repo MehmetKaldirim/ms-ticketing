@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: orders
-          image: us.gcr.io/gifted-proxy-435123-u1/orders
+          image: mathdenizi/ticketing-orders
           env:
             - name: NATS_CLIENT_ID
               valueFrom:
