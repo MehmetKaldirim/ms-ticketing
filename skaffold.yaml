@@ -7,7 +7,7 @@ build:
   local:
     push: false # Build and use local images
   artifacts:
-    - image: ticketing-auth
+    - image: mathdenizi/ticketing-auth
       context: auth
       docker:
         dockerfile: Dockerfile
@@ -15,7 +15,7 @@ build:
         manual:
           - src: "src/**/*.ts"
             dest: .
-    - image: ticketing-client
+    - image: mathdenizi/ticketing-client
       context: client
       docker:
         dockerfile: Dockerfile
@@ -23,7 +23,7 @@ build:
         manual:
           - src: "**/*.js"
             dest: .
-    - image: ticketing-tickets
+    - image: mathdenizi/ticketing-tickets
       context: tickets
       docker:
         dockerfile: Dockerfile
@@ -31,7 +31,7 @@ build:
         manual:
           - src: "src/**/*.ts"
             dest: .
-    - image: ticketing-orders
+    - image: mathdenizi/ticketing-orders
       context: orders
       docker:
         dockerfile: Dockerfile
@@ -39,7 +39,7 @@ build:
         manual:
           - src: "src/**/*.ts"
             dest: .
-    - image: ticketing-expiration
+    - image: mathdenizi/ticketing-expiration
       context: expiration
       docker:
         dockerfile: Dockerfile
@@ -47,7 +47,7 @@ build:
         manual:
           - src: "src/**/*.ts"
             dest: .
-    - image: ticketing-payments
+    - image: mathdenizi/ticketing-payments
       context: payments
       docker:
         dockerfile: Dockerfile
