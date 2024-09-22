@@ -1,33 +1,41 @@
-const LandingPage = ({ currentUser }) => {
-  return currentUser ? <h1>You are sign in</h1> : <h1>You are not sign in</h1>;
+import Link from "next/link";
 
-  return <h1>Landing Page</h1>;
+const LandingPage = ({ currentUser, tickets }) => {
+  const ticketList = tickets.map((ticket) => {
+    return (
+      <tr key={ticket.id}>
+        <td>{ticket.title}</td>
+        <td>{ticket.price}</td>
+        <td>
+          <Link href="/tickets/[ticketId]" as={`/tickets/${ticket.id}`}>
+            View
+          </Link>
+        </td>
+      </tr>
+    );
+  });
+
+  return (
+    <div>
+      <h1>Tickets</h1>
+      <table className="table">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Price</th>
+            <th>Link</th>
+          </tr>
+        </thead>
+        <tbody>{ticketList}</tbody>
+      </table>
+    </div>
+  );
 };
 
 LandingPage.getInitialProps = async (context, client, currentUser) => {
-  return {};
+  const { data } = await client.get("/api/tickets");
+
+  return { tickets: data };
 };
-
-//a way to use ssr inside the cluster
-// LandingPage.getInitialProps = async ({ req }) => {
-//   let url;
-
-//   if (typeof window === "undefined") {
-//     // We're on the server, so we need an absolute URL
-//     const baseURL = req ? `http://${req.headers.host}` : ""; // Get host from request headers
-//     url = `${baseURL}/api/users/currentuser`;
-//   } else {
-//     // We're on the client, so relative URL is fine
-//     url = "/api/users/currentuser";
-//   }
-//   console.log(url);
-//   try {
-//     const response = await axios.get(url);
-//     return response.data;
-//   } catch (err) {
-//     console.error(err);
-//     return { currentUser: null };
-//   }
-// };
 
 export default LandingPage;
