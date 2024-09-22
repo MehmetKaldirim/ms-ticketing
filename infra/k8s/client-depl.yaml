@@ -15,6 +15,12 @@ spec:
       containers:
         - name: client
           image: mathdenizi/ticketing-client
+          env:
+            - name: NEXT_PUBLIC_STRIPE_PUBLISH
+              valueFrom:
+                secretKeyRef:
+                  name: stripe-publish
+                  key: STRIPE_PUBLISH
 ---
 apiVersion: v1
 kind: Service
