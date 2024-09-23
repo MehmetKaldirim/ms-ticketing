@@ -12,10 +12,18 @@ declare global {
 jest.mock("../nats-wrapper.ts");
 let mongo: MongoMemoryServer;
 
-process.env.STRIPE_KEY = "we should put originally key iot test it";
 //"we should put originally key iot test it"
 beforeAll(async () => {
   process.env.JWT_KEY = "somekey";
+
+  //realistischer Test
+  // process.env.STRIPE_KEY = process.env.STRIPE_KEY! || "sk_test_yourtestkey"; // Ensure STRIPE_KEY is defined in tests
+
+  // if (!process.env.STRIPE_KEY) {
+  //   throw new Error("STRIPE_KEY must be defined");
+  // }
+
+  // console.log("STRIPE_KEY in test environment:", process.env.STRIPE_KEY);
 
   mongo = await MongoMemoryServer.create();
   const mongoUri = mongo.getUri();
