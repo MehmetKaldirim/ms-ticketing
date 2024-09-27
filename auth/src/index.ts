@@ -2,9 +2,7 @@ import mongoose from "mongoose";
 
 import { app } from "./app";
 const start = async () => {
-  console.log(
-    "Starting up stil i build docker with github action after push..."
-  );
+  console.log("A small change for testing purpose .");
   if (!process.env.JWT_KEY) {
     throw new Error("JWT_KEY must be defined");
   }
